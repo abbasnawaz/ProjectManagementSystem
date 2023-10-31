@@ -10,6 +10,7 @@ gem "rails", "~> 7.0.8"
 gem "sprockets-rails"
 
 
+
 gem 'faker'
 
 # gem 'devise', '~> 4.9', '>= 4.9.2'
