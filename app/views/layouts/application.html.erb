@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectManagement</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+ 
+  <body>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+   
+
+    <% if newuser_signed_in? %>
+    <div class="container">
+      Logged in as <strong><%= current_newuser.email %></strong> <br>
+      <%=link_to 'Edit profile', edit_newuser_registration_path, :class => 'btn btn-primary' %> 
+      <%=button_to "Logout", destroy_newuser_session_path, method: :delete, :class => 'btn btn-danger' %> 
+      
+    </div>
+      
+    <% else %>
+
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Welcome to Project Management System</h5>
+                <p class="card-text"></p>
+                <%= link_to 'LogIn', new_newuser_session_path, class: "btn btn-primary btn-lg"  %>
+                <%= link_to 'New User', new_newuser_registration_path, class: "btn btn-success btn-lg"  %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    <% end %>
+
+
+
+
+    <%= yield %>
+  </body>
+</html>
