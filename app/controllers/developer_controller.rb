@@ -2,6 +2,9 @@ class DeveloperController < ApplicationController
 
   def show_developer
 
+    @developer = Developer.find_by(newuser_id: current_newuser.id)
+
+
 
   end
 

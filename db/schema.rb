@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_31_112618) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_01_133007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_112618) do
     t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "newuser_id"
+    t.index ["newuser_id"], name: "index_developers_on_newuser_id"
     t.index ["task_id"], name: "index_developers_on_task_id"
   end
 
@@ -61,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_112618) do
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
+  add_foreign_key "developers", "newusers"
   add_foreign_key "developers", "tasks"
   add_foreign_key "projects", "newusers"
   add_foreign_key "tasks", "projects"

@@ -1,1 +1,93 @@
-working
+
+<% if flash[:warning]%>
+
+  <div class = "container">
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:warning]%>
+    </div>
+    
+  </div>
+  
+  
+
+  <% end %>
+
+<% if flash[:notice]%>
+
+  <div class = "container">
+    <div class="alert alert-info" role="alert">
+      <%= flash[:notice]%>
+    </div>
+    
+  </div>
+  
+  
+
+  <% end %>
+
+
+  <div class="container">
+    <table class="table mt-4 m-3 table-borderless table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Specilization</th>
+          <th scope="col">Age</th>
+          <th scope="col">Phone #</th>
+          <th scope="col">email</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+          
+          
+          
+        </tr>
+      </thead>
+      <% if @developer%>
+            <tbody>
+
+                
+
+                <% @developer.each do |developer| %>
+
+                
+                    <tr>
+                        <th scope="row"><%= developer.name %></th>
+                        <td><%= developer.specilization %></td>
+                        <td><%= developer.age %> </td>
+                        <td><%= developer.phoneNo %> </td>
+                        <td><%= developer.email %> </td>
+
+                        <td><%= link_to "Edit Developer", "/edit_developer/#{developer.id}", class: "btn btn-primary" %></td>
+                        <td><%= link_to "Delete Developer", "/delete_developer/#{developer.id}", class: "btn btn-danger" %></td>
+
+                        
+                    </tr>
+            
+                <% end  %>
+
+                
+            </tbody>
+
+      <%# <%end%>
+
+      <% else %>
+
+
+      <div class="jumbotron ">
+        <div class="container">
+            <h1 class="display-4">No Developer</h1>
+        </div>
+    </div>
+
+      
+
+      <% end %>
+      
+
+      <%= link_to "Add Developer", "/add_developer", class: "btn btn-success m-3 btn-lg" %>
+
+    </table>
+
+
+  </div>
+    
