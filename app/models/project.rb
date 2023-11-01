@@ -1,7 +1,8 @@
 class Project < ApplicationRecord
 
 
-  belongs_to :user, class_name: 'User'
+  # belongs_to :user, class_name: 'User'
+  belongs_to :newuser, foreign_key: 'newuser_id'
   has_many :tasks
 
   validates :project_name, presence: true, uniqueness: { case_sensitive: false }

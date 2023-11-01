@@ -17,4 +17,7 @@ class Newuser < ApplicationRecord
 
 
 
+
+
+
 end

@@ -1,0 +1,75 @@
+
+<% if flash[:warning]%>
+
+  <div class = "container">
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:warning]%>
+    </div>
+    
+  </div>
+  
+  
+
+  <% end %>
+
+<% if flash[:notice]%>
+
+  <div class = "container">
+    <div class="alert alert-info" role="alert">
+      <%= flash[:notice]%>
+    </div>
+    
+  </div>
+  
+  
+
+  <% end %>
+
+
+  <div class="container">
+    <table class="table mt-4 m-3 table-borderless table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Description</th>
+          <th scope="col">Ticket</th>
+          <th scope="col">Task Type</th>
+          <th scope="col">Ending Date</th>
+          <th scope="col">Priority</th>
+
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+
+          
+          
+          
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @task.each do |task| %>
+
+          
+            <tr>
+                <th scope="row"><%= task.description %></th>
+                <td><%= task.ticketNo %></td>
+                <td><%= task.task_type %> </td>
+                <td><%= task.ending_date %> </td>
+                <td><%= task.priority %> </td>
+
+                 <td><%= link_to "Edit Task", "/edit_task/#{task.id}", class: "btn btn-primary" %></td>
+                <td><%= link_to "Delete Task", "/delete_task/#{task.id}", class: "btn btn-danger" %></td>
+
+
+            </tr>
+      
+        <% end  %>
+
+        
+      </tbody>
+
+      <%= link_to "Add Task", "/add_task", class: "btn btn-success m-3 btn-lg" %>
+    </table>
+
+
+  </div>
+    
