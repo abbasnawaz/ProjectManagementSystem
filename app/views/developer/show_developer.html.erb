@@ -1,9 +1,9 @@
 
-<% if flash[:warning]%>
+<% if flash[:error]%>
 
   <div class = "container">
     <div class="alert alert-danger" role="alert">
-      <%= flash[:warning]%>
+      <%= flash[:error]%>
     </div>
     
   </div>
@@ -84,7 +84,7 @@
       <% end %>
       
 
-      <%= link_to "Add Developer", "/add_developer", class: "btn btn-success m-3 btn-lg" %>
+      <%= link_to "Add Developer", "/create_developer", class: "btn btn-success m-3 btn-lg" %>
 
     </table>
 

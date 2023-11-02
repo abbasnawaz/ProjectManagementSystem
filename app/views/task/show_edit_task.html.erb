@@ -37,6 +37,20 @@
             <%= f.select :priority, options_for_select((1..10).to_a) %>
         </div>
 
+        <div class="field">
+            <%= f.label :Developer, "Assign to developer" %>
+            <% if @developer %>
+            
+                
+                <%= f.select :Developers, options_for_select(@developer.map { |developer| ["#{developer.name} - #{developer.specilization}", developer.id] },  @selectedDeveloper.id) %>
+                    
+                
+
+            <% end %>
+            
+            
+        </div>
+
 
     
 

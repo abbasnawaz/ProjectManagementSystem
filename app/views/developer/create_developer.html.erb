@@ -1,0 +1,53 @@
+
+<div class="container">
+
+
+
+
+
+    <%= form_with(model: @developer, url:"/create_developer", method: :post)   do |f| %>
+
+        <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :specilization %>
+            <%= f.text_field :specilization, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group">
+            <%= f.label :age %>
+            <%= f.text_field :age, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group">
+            <%= f.label :phoneNo %>
+            <%= f.text_field :phoneNo, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group">
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "form-control" %>
+        </div>
+
+
+
+        
+       
+
+    
+
+    <div class="form-group">
+        <%= f.submit "Add Developer", class: "btn btn-primary" %>
+    </div>
+
+
+
+    <% end %>
+
+</div>

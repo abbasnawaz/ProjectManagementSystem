@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
 
   belongs_to :project
-  has_one :developers
+  belongs_to :developer
 
   enum :task_type, [:feature, :bug]
 

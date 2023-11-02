@@ -9,6 +9,7 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.integer :priority
 
       t.belongs_to :project, foreign_key: true
+      t.belongs_to :developer, foreign:true
 
 
 

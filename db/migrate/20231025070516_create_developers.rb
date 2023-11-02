@@ -9,7 +9,7 @@ class CreateDevelopers < ActiveRecord::Migration[7.0]
       t.string :email
 
 
-      t.belongs_to :task, foreign_key: true
+      # t.belongs_to :task, foreign_key: true
 
 
 

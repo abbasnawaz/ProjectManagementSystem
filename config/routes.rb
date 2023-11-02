@@ -33,7 +33,12 @@ Rails.application.routes.draw do
 
 
 
-  get "/developer/all", to: "developer#show_developer"
+  get "/developer/all", to: "developer#show_developer", as: :user_developer
+
+
+  get "/create_developer", to: "developer#create_developer"
+
+  post "/create_developer", to: "developer#save_developer"
 
 
 

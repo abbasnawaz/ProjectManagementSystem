@@ -12,6 +12,8 @@ class TaskController < ApplicationController
 
 
   def add_task
+    @developer = Developer.where(newuser_id: current_newuser.id)
+
 
   end
 
@@ -19,7 +21,8 @@ class TaskController < ApplicationController
   def save_task
     # byebug
     unique_random_integer = SecureRandom.random_number(1_000_000)
-    @task = Task.new(description: params[:description],ticketNo: unique_random_integer, task_type: params[:task_type], ending_date: params[:ending_date], priority: params[:priority], project_id: session[:pid])
+    @task = Task.new(description: params[:description],ticketNo: unique_random_integer, task_type: params[:task_type], ending_date: params[:ending_date], priority: params[:priority], project_id: session[:pid], developer_id: params[:Developers])
+
     if @task.save
       flash[:notice] = "Task saved successfully"
       redirect_to user_project_path(session[:pid])
@@ -36,6 +39,9 @@ class TaskController < ApplicationController
   def show_edit_task
 
     @task = Task.find(params[:id])
+    @developer = Developer.where(newuser_id: current_newuser.id)
+    @selectedDeveloper = @task.developer
+    # byebug
 
 
   end
@@ -43,6 +49,8 @@ class TaskController < ApplicationController
 
   def save_edit_task
     @task = Task.find(params[:id])
+    @developer = Developer.where(newuser_id: current_newuser.id)
+    # byebug
 
     if @task.update(task_params)
       flash[:success] = "Task updated"
@@ -71,7 +79,7 @@ class TaskController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:description, :ticketNo, :task_type, :ending_date, :priority)
+    params.require(:task).permit(:developer_id, :description, :ticketNo, :task_type, :ending_date, :priority)
 
   end
 
