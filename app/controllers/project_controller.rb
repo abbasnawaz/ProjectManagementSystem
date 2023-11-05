@@ -7,43 +7,32 @@ class ProjectController < ApplicationController
   end
 
 
-  def create
+  def new
 
   end
 
-  def AddProject
-
-
-    # @user = Newuser.find_by_email(current_user.email)
-    # @project = Project.new(project_name: params[:name],: params[:], : current_user.id)
-
-    puts "The ID is: "+current_newuser.id.to_s
-    new_project = Project.new(project_name: params[:project_name], starting_date: params[:starting_date], ending_date: params[:ending_date], newuser_id: current_newuser.id)
-    # byebug
+  def create
+    new_project = Project.new()
     if new_project.save()
       redirect_to root_path
     else
-      # byebug
       flash[:warning] = "Error While Saving Project"
       redirect_to root_path
     end
-
-
-
-
-    # puts params
   end
 
 
   def update_user_project
 
-    @project = Project.find(params[:id])
+    @project = find_project(params[:id])
+
 
   end
 
   def save_user_project
 
-    @project = Project.find(params[:id])
+
+    @project = find_project(params[:id])
 
     if @project.update(user_params)
       flash[:success] = "Project updated"
@@ -59,7 +48,7 @@ class ProjectController < ApplicationController
 
 
   def delete_user_project
-    @project = Project.find(params[:id])
+    @project = find_project(params[:id])
     if @project.delete
       flash[:notice] = "Project deleted successfully"
       redirect_to root_path
@@ -72,6 +61,14 @@ class ProjectController < ApplicationController
   def user_params
     params.require(:project).permit(:project_name, :starting_date, :ending_date)
 
+  end
+
+  def project_params
+    params.require(:project).permit(:project_name, :starting_date, :ending_date, :newuser_id)
+  end
+
+  def find_project(project_id)
+    Project.find(project_id)
   end
 
 

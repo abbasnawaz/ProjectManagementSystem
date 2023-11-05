@@ -11,8 +11,6 @@ class Newuser::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super do |resource|
-      # puts "The params are here in SessionsController ------------------------ "+params[:id]
-
       redirect_to "/user/:id"
       return
     end

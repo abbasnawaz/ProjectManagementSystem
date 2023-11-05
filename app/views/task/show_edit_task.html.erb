@@ -1,37 +1,22 @@
-
-<% if flash[:error]%>
-  <div class="alert alert-info m-2">
-    <strong>Error : </strong> <%= flash[:error]%>
-  </div>
-<% end %>
-
-
-
-
+<%= render 'layouts/notifications' %>
 <div class="m-4">
-
-
     <%= form_with model: @task, url: "/edit_task/#{@task.id}", method: :post do |f| %>
-    
         <div class="form-group">
             <%= f.label :description, "Task Description: ", class: "form-label text-dark fs-4"%>
             <%= f.text_field :description, class: "form-control",  required: true%>
         </div>
-
         <div class="form-group">
             <%= f.label :ticketNo, "Ticket Number: ", class: "form-label text-dark fs-4"%>
             <%= f.text_field :ticketNo, class: "form-control",  required: true%>
         </div>
-
         <div class="form-group">
             <%= f.select :task_type, [["Bug", "bug"], ["Feature", "feature"]] %>
         </div>
-
         <div class="form-group">
             <%= f.label :ending_date %>
             <%= f.date_field :ending_date, class: "form-control" %>
         </div>
-            
+           
         <div class="field">
             <%= f.label :priority %>
             <%= f.select :priority, options_for_select((1..10).to_a) %>
@@ -50,22 +35,14 @@
             
             
         </div>
-
-
-    
-
-
-
-        
-
         <div class="form-group m-3">
-        <%=f.submit "Update Task", class: "btn btn-primary btn-lg" %>
+            <%=f.submit "Update Task", class: "btn btn-primary btn-lg" %>
         </div>
 
     
 
 
 
-<%end%>
+    <%end%>
 
 </div>

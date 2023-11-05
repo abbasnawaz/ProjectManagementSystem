@@ -1,6 +1,6 @@
 class DeveloperController < ApplicationController
 
-  def show_developer
+  def show
 
     @developer = Developer.where(newuser_id: current_newuser.id)
 
@@ -8,14 +8,14 @@ class DeveloperController < ApplicationController
 
   end
 
-  def create_developer
+  def create
 
   end
 
   def save_developer
 
 
-    @developer = Developer.new(specilization: params[:specilization], name: params[:name], age: params[:age], phoneNo: params[:phoneNo], email: params[:email], newuser_id: current_newuser.id )
+    @developer = Developer.new(developer_params)
     if @developer.save()
       flash[:notice] = "Developer saved successfully"
       redirect_to user_developer_path
@@ -27,16 +27,12 @@ class DeveloperController < ApplicationController
 
   end
 
-  def update_developer
 
-  end
 
-  def save_update_developer
+  private
 
-  end
-
-  def delete_developer
-
+  def developer_params
+    params.require(:developer).permit(:specilization, :name, :age, :phoneNo, :email, :newuser_id)
   end
 
 

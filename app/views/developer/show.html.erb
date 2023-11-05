@@ -1,30 +1,4 @@
-
-<% if flash[:error]%>
-
-  <div class = "container">
-    <div class="alert alert-danger" role="alert">
-      <%= flash[:error]%>
-    </div>
-    
-  </div>
-  
-  
-
-  <% end %>
-
-<% if flash[:notice]%>
-
-  <div class = "container">
-    <div class="alert alert-info" role="alert">
-      <%= flash[:notice]%>
-    </div>
-    
-  </div>
-  
-  
-
-  <% end %>
-
+<%= render 'layouts/notifications' %>
 
   <div class="container">
     <table class="table mt-4 m-3 table-borderless table-hover">

@@ -2,7 +2,7 @@ class Developer < ApplicationRecord
 #   self.primary_key = [:newuser_id, :task_id]
 
 #   belongs_to :task
-  has_many :developers
+#   has_many :developers
   belongs_to :newuser, foreign_key: 'newuser_id'
 
   validates :specilization, presence: true

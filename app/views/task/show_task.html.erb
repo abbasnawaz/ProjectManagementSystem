@@ -1,29 +1,4 @@
-
-<% if flash[:warning]%>
-
-  <div class = "container">
-    <div class="alert alert-danger" role="alert">
-      <%= flash[:warning]%>
-    </div>
-    
-  </div>
-  
-  
-
-  <% end %>
-
-<% if flash[:notice]%>
-
-  <div class = "container">
-    <div class="alert alert-info" role="alert">
-      <%= flash[:notice]%>
-    </div>
-    
-  </div>
-  
-  
-
-  <% end %>
+<%= render 'layouts/notifications' %>
 
 
   <div class="container">

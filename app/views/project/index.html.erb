@@ -1,31 +1,4 @@
-
-<% if flash[:warning]%>
-
-  <div class = "container">
-    <div class="alert alert-danger" role="alert">
-      <%= flash[:warning]%>
-    </div>
-    
-  </div>
-  
-  
-
-  <% end %>
-
-<% if flash[:notice]%>
-
-  <div class = "container">
-    <div class="alert alert-info" role="alert">
-      <%= flash[:notice]%>
-    </div>
-    
-  </div>
-  
-  
-
-  <% end %>
-
-
+<%= render 'layouts/notifications' %>
   <div class="container">
     <table class="table mt-4 m-3 table-borderless table-hover">
       <thead>
@@ -64,7 +37,7 @@
         
       </tbody>
 
-      <%= link_to "Add Project", "/add_project", class: "btn btn-success m-3 btn-lg" %>
+      <%= link_to "Add Project", new_project_path, class: "btn btn-success m-3 btn-lg" %>
       <%= link_to "Developer", "/developer/all", class: "btn btn-dark m-3 btn-lg" %>
     </table>
 

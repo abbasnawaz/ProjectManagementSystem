@@ -11,16 +11,11 @@ class Newuser::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-        super do |resource|
-           puts "The params are here in registration controller------------------------ "+@newuser.id.to_s
+      super do |resource|
+            redirect_to new_newuser_session_path
+            return
 
-
-
-      #      redirect_to "/user/#{@newuser.id.to_s}",  allow_other_host: true
-             redirect_to new_newuser_session_path
-           return
-
-        end
+      end
 
 
 
