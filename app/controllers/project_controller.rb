@@ -51,6 +51,7 @@ class ProjectController < ApplicationController
 
   def delete_user_project
     @project = find_project()
+    @project.tasks.destroy_all
     if @project.delete
       flash[:notice] = "Project deleted successfully"
       redirect_to root_path
