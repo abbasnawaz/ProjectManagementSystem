@@ -41,5 +41,11 @@ Rails.application.routes.draw do
 
   get "/create_developer", to: "developer#create"
 
-  put "/create_developer", to: "developer#save_developer"
+  post "/create_developer", to: "developer#save_developer"
+
+  get "/delete_developer/:id", to: "developer#destory"
+
+  get "/edit_developer/:id", to: "developer#edit"
+
+  put "/edit_developer/:id", to: "developer#update"
 end

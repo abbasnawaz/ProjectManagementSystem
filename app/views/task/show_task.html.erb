@@ -21,8 +21,10 @@
         </tr>
       </thead>
       <tbody>
+        
 
-        <% @task.each do |task| %>
+        <% @tasks.each do |task| %>
+        
 
           
             <tr>
@@ -31,7 +33,7 @@
                 <td><%= task.task_type %> </td>
                 <td><%= task.ending_date %> </td>
                 <td><%= task.priority %> </td>
-                <td><%= task.developer.name %> </td>
+                <td><%= task.developer.name %></td>
                  <td><%= link_to "Edit Task", "/edit_task/#{task.id}", class: "btn btn-primary" %></td>
                 <td><%= link_to "Delete Task", "/delete_task/#{task.id}", class: "btn btn-danger" %></td>
 

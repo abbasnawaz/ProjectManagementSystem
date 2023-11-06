@@ -5,7 +5,8 @@ class TaskController < ApplicationController
 
   def show_task
     session[:pid] = params[:id]
-    @task = Task.where("project_id = ?", params[:id])
+    @tasks = Task.where("project_id = ?", params[:id])
+
 
   end
 
@@ -13,10 +14,8 @@ class TaskController < ApplicationController
   def add_task
     @task = Task.new
     @developer = Developer.where(newuser_id: current_newuser.id)
-
-
-
   end
+
 
 
   def save_task

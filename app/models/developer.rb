@@ -1,6 +1,7 @@
 class Developer < ApplicationRecord
 
   belongs_to :newuser, foreign_key: 'newuser_id'
+  has_one :task
 
   validates :specilization, presence: true
   validates :name, presence: true
