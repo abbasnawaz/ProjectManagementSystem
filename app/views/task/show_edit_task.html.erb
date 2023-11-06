@@ -1,6 +1,6 @@
 <%= render 'layouts/notifications' %>
 <div class="m-4">
-    <%= form_with model: @task, url: "/edit_task/#{@task.id}", method: :post do |f| %>
+    <%= form_with model: @task, url: "/edit_task/#{@task.id}", method: :put do |f| %>
         <div class="form-group">
             <%= f.label :description, "Task Description: ", class: "form-label text-dark fs-4"%>
             <%= f.text_field :description, class: "form-control",  required: true%>

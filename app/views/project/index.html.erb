@@ -16,7 +16,7 @@
       </thead>
       <tbody>
 
-        <% @project.each do |project| %>
+        <% @projects.each do |project| %>
 
           
             <tr>
@@ -37,7 +37,7 @@
         
       </tbody>
 
-      <%= link_to "Add Project", new_project_path, class: "btn btn-success m-3 btn-lg" %>
+      <%= link_to "Add Project", "/add_project", class: "btn btn-success m-3 btn-lg" %>
       <%= link_to "Developer", "/developer/all", class: "btn btn-dark m-3 btn-lg" %>
     </table>
 

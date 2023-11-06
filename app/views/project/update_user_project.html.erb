@@ -1,7 +1,7 @@
 <%= render 'layouts/notifications' %>
 
   <div class="m-4">
-    <%= form_with model: @project, url: "/edit_project/#{@project.id}", method: :post do |f| %>
+    <%= form_with model: @project, url: "/edit_project/#{@project.id}", method: :put do |f| %>
     
       <div class="form-group">
         <%= f.label :project_name, "Project Name: ", class: "form-label text-dark fs-4"%>

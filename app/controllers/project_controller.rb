@@ -3,20 +3,22 @@ class ProjectController < ApplicationController
   before_action :authenticate_newuser!
 
   def index
-    @project = Project.where("newuser_id = ?", current_newuser.id.to_s)
+    # @project = Project.where("newuser_id = ?", current_newuser.id.to_s)
+    @projects = current_newuser.projects
+    # byebug
   end
-
-
-  def new
-
-  end
-
   def create
-    new_project = Project.new()
-    if new_project.save()
+    @project = Project.new
+    # byebug
+  end
+
+  def save_project
+    # byebug
+    @project = Project.new(project_params)
+    if @project.save()
       redirect_to root_path
     else
-      flash[:warning] = "Error While Saving Project"
+      flash[:warning] = @project.errors.full_messages.to_sentence
       redirect_to root_path
     end
   end
@@ -24,7 +26,7 @@ class ProjectController < ApplicationController
 
   def update_user_project
 
-    @project = find_project(params[:id])
+    @project = find_project()
 
 
   end
@@ -32,7 +34,7 @@ class ProjectController < ApplicationController
   def save_user_project
 
 
-    @project = find_project(params[:id])
+    @project = find_project()
 
     if @project.update(user_params)
       flash[:success] = "Project updated"
@@ -48,7 +50,7 @@ class ProjectController < ApplicationController
 
 
   def delete_user_project
-    @project = find_project(params[:id])
+    @project = find_project()
     if @project.delete
       flash[:notice] = "Project deleted successfully"
       redirect_to root_path
@@ -64,11 +66,16 @@ class ProjectController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:project_name, :starting_date, :ending_date, :newuser_id)
+    # byebug
+    p_params = params.require(:project).permit(:project_name, :starting_date, :ending_date, :newuser_id)
+    p_params[:newuser_id] = current_newuser.id
+    p_params
+    # byebug
   end
 
-  def find_project(project_id)
-    Project.find(project_id)
+  def find_project
+    Project.find(params[:id])
+
   end
 
 

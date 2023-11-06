@@ -1,5 +1,5 @@
 <div class="container">
-    <%= form_with url:"" do |f| %>
+    <%= form_with model:@project, url:"/add_project", method: :post do |f| %>
         <div class="form-group">
             <%= f.label :project_name %>
             <%= f.text_field :project_name, class: "form-control" %>

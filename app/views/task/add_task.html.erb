@@ -5,7 +5,7 @@
 
 
 
-    <%= form_with url:"/add_task" do |f| %>
+    <%= form_with model: @task ,url:"/add_task", method: :post do |f| %>
 
         <div class="form-group">
             <%= f.label :description %>
@@ -27,11 +27,11 @@
         </div>
 
         <div class="field">
-            <%= f.label :Developer, "Assign to developer" %>
+            <%= f.label :developer_id, "Assign to developer" %>
             <% if @developer %>
             
                 
-                <%= f.select :Developers, options_for_select(@developer.map { |developer| [developer.name, developer.specilization, developer.id] }) %>
+                <%= f.select :developer_id, options_for_select(@developer.map { |developer| [developer.name, developer.specilization, developer.id] }) %>
                     
                 
 
