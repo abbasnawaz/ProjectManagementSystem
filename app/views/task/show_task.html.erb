@@ -1,53 +1,57 @@
-<%= render 'layouts/notifications' %>
+  <%= render 'layouts/notifications' %>
 
 
-  <div class="container">
-    <table class="table mt-4 m-3 table-borderless table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Description</th>
-          <th scope="col">Ticket</th>
-          <th scope="col">Task Type</th>
-          <th scope="col">Ending Date</th>
-          <th scope="col">Priority</th>
-          <th scope="col">Developer Name</th>
-
-          <th scope="col">Update</th>
-          <th scope="col">Delete</th>
-
+    <div class="container">
+      <table id="tasks-table" class="table mt-4 m-3 table-borderless table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Sr. #</th>
+            <th scope="col">Description</th>
+            <th scope="col">Ticket</th>
+            <th scope="col">Ending Date</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Developer Name</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
           
-          
-          
-        </tr>
-      </thead>
-      <tbody>
+
+          <% @tasks.each_with_index do |task, index| %>
+              <tr>
+                  <th scope="row"><%= index+1 %></th>
+                  <td><%= task.description %></td>
+                  <td><%= task.ticketNo %></td>
+                  <td><%= task.ending_date %> </td>
+
+
+                  <td>
+                    <%= form_for(task, url: "", method: :put, remote: true, html: { "data-controller": "priority", 'data-priority-index': task.id }) do |f| %>
+                      <div class="field">
+                        <%= f.label :priority %>
+                        <%= f.select :priority,
+                                    options_for_select((1..10).to_a, selected: task.priority),
+                                    class: "form-select" %>
+                      </div>
+                    <% end %>
+                  </td>
+
+                  <td><%= task.developer.name %></td>
+                  <td><%= link_to "Edit Task", "/edit_task/#{task.id}", class: "btn btn-primary" %></td>
+                  <td><%= link_to "Delete Task", "/delete_task/#{task.id}", class: "btn btn-danger" %></td>
+
+
+                </tr>
         
-
-        <% @tasks.each do |task| %>
-        
+          <% end  %>
 
           
-            <tr>
-                <th scope="row"><%= task.description %></th>
-                <td><%= task.ticketNo %></td>
-                <td><%= task.task_type %> </td>
-                <td><%= task.ending_date %> </td>
-                <td><%= task.priority %> </td>
-                <td><%= task.developer.name %></td>
-                <td><%= link_to "Edit Task", "/edit_task/#{task.id}", class: "btn btn-primary" %></td>
-                <td><%= link_to "Delete Task", "/delete_task/#{task.id}", class: "btn btn-danger" %></td>
+        </tbody>
+
+        <%= link_to "Add Task", "/add_task", class: "btn btn-success m-3 btn-lg" %>
+      </table>
 
 
-            </tr>
+    </div>
       
-        <% end  %>
-
-        
-      </tbody>
-
-      <%= link_to "Add Task", "/add_task", class: "btn btn-success m-3 btn-lg" %>
-    </table>
-
-
-  </div>
-    

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "/delete_project/:id", to: "project#delete_user_project"
 
   get "/project_task/:id", to: "task#show_task", as: :user_project
+  patch "/project_task/:id", to: "task#show_task"
 
   get "/add_task", to: "task#add_task"
 
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
 
 
   get "/edit_task/:id", to: "task#show_edit_task"
-  put "/edit_task/:id", to: "task#save_edit_task"
+  patch "/edit_task/:id", to: "task#save_edit_task"
 
 
   get "/delete_task/:id", to: "task#delete_task"

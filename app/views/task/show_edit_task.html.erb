@@ -9,7 +9,7 @@
             <%= f.label :ticketNo, "Ticket Number: ", class: "form-label text-dark fs-4"%>
             <%= f.text_field :ticketNo, class: "form-control",  required: true%>
         </div>
-        <div class="form-group">
+        <div class="form-group">    
             <%= f.select :task_type, [["Bug", "bug"], ["Feature", "feature"]] %>
         </div>
         <div class="form-group">
@@ -19,7 +19,7 @@
            
         <div class="field">
             <%= f.label :priority %>
-            <%= f.select :priority, options_for_select((1..10).to_a) %>
+            <%= f.select :priority, options_for_select((1..10).to_a, selected: @task.priority) %>
         </div>
 
         <div class="field">
@@ -27,7 +27,7 @@
             <% if @developer %>
             
                 
-                <%= f.select :Developers, options_for_select(@developer.map { |developer| ["#{developer.name} - #{developer.specilization}", developer.id] },  @selectedDeveloper.id) %>
+                <%= f.select :Developers, options_for_select(@developer.map { |developer| ["#{developer.name} - #{developer.specilization}", developer.id] },  @selectedDeveloper.name) %>
                     
                 
 

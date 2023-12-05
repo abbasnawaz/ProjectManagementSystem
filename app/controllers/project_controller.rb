@@ -3,17 +3,13 @@ class ProjectController < ApplicationController
   before_action :authenticate_newuser!
 
   def index
-    # @project = Project.where("newuser_id = ?", current_newuser.id.to_s)
     @projects = current_newuser.projects
-    # byebug
   end
   def create
     @project = Project.new
-    # byebug
   end
 
   def save_project
-    # byebug
     @project = Project.new(project_params)
     if @project.save()
       redirect_to root_path
@@ -25,17 +21,11 @@ class ProjectController < ApplicationController
 
 
   def update_user_project
-
     @project = find_project()
-
-
   end
 
   def save_user_project
-
-
     @project = find_project()
-
     if @project.update(user_params)
       flash[:success] = "Project updated"
       redirect_to root_path
