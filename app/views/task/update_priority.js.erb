@@ -1,0 +1,6 @@
+
+var taskId = <%= @task.id %>;
+var newPriority = <%= @task.priority %>;
+
+
+$('[data-priority-index="' + taskId + '"]').val(newPriority);

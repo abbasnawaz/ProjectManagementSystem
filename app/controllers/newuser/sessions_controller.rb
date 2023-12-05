@@ -11,7 +11,7 @@ class Newuser::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super do |resource|
-      redirect_to "/show/user/projects/:userID"
+      redirect_to "/user/:id"
       return
     end
   end

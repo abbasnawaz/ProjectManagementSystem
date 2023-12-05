@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_31_113201) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_02_064800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,21 +20,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_113201) do
     t.integer "age"
     t.string "phoneNo"
     t.string "email"
-    t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["task_id"], name: "index_developers_on_task_id"
+    t.bigint "newuser_id"
+    t.index ["newuser_id"], name: "index_developers_on_newuser_id"
   end
 
   create_table "newusers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "organization"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "organization"
     t.index ["email"], name: "index_newusers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_newusers_on_reset_password_token", unique: true
   end
@@ -45,8 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_113201) do
     t.date "ending_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "newusers_id"
-    t.index ["newusers_id"], name: "index_projects_on_newusers_id"
+    t.bigint "newuser_id"
+    t.index ["newuser_id"], name: "index_projects_on_newuser_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -56,12 +56,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_113201) do
     t.date "ending_date"
     t.integer "priority"
     t.bigint "project_id"
+    t.bigint "developer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["developer_id"], name: "index_tasks_on_developer_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
-  add_foreign_key "developers", "tasks"
-  add_foreign_key "projects", "newusers", column: "newusers_id"
+  add_foreign_key "developers", "newusers"
+  add_foreign_key "projects", "newusers"
   add_foreign_key "tasks", "projects"
 end
